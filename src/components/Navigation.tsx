@@ -1,55 +1,86 @@
 'use client';
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
-const Navigation = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
+// 内联SVG图标组件
+const Bars3Icon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+  </svg>
+);
 
-    const toggleNav = () => {
-        setIsExpanded(!isExpanded);
-    };
+const XMarkIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+  </svg>
+);
 
-    return (
-        <div className="fixed left-6 top-40 z-50">
-            {/* 菜单按钮 */}
-            <button
-                onClick={toggleNav}
-                className="menu-trigger"
-                aria-label={isExpanded ? "Close menu" : "Open menu"}
+interface NavigationProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export function Navigation({ isOpen, setIsOpen }: NavigationProps) {
+  const navigation = [
+    { name: '首页', href: '/' },
+    { name: '产品', href: '/products' },
+    { name: '大师作品', href: '#' },
+    { name: '工作坊', href: '#' },
+    { name: 'VR体验', href: '/vr-canvas' },
+    { name: '关于我们', href: '#' },
+  ];
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <div className="md:hidden">
+        <button
+          type="button"
+          className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-controls="mobile-menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="sr-only">Open main menu</span>
+          {isOpen ? (
+            <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+          ) : (
+            <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+          )}
+        </button>
+      </div>
+
+      {/* Desktop navigation */}
+      <div className="hidden md:block">
+        <div className="ml-10 flex items-baseline space-x-4">
+          {navigation.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
             >
-                {isExpanded ? (
-                    <XMarkIcon className="w-6 h-6 text-gray-600" />
-                ) : (
-                    <Bars3Icon className="w-6 h-6 text-gray-600" />
-                )}
-            </button>
-
-            {/* 导航菜单 */}
-            <div className={`menu-content ${isExpanded ? 'menu-open' : ''}`}>
-                <div className="menu-links">
-                    <Link href="/products" className="menu-link">
-                        <span>Products</span>
-                    </Link>
-                    <a href="#about" className="menu-link">
-                        <span>About Us</span>
-                    </a>
-                    <a href="#factory" className="menu-link">
-                        <span>Factory Tour</span>
-                    </a>
-                    <a href="#quality" className="menu-link">
-                        <span>Quality Control</span>
-                    </a>
-                    <a href="#rd" className="menu-link">
-                        <span>R&D Capability</span>
-                    </a>
-                    <a href="#contact" className="menu-link">
-                        <span>Contact Us</span>
-                    </a>
-                </div>
-            </div>
+              {item.name}
+            </a>
+          ))}
         </div>
-    );
-};
+      </div>
 
-export default Navigation; 
+      {/* Mobile navigation menu */}
+      {isOpen && (
+        <div className="md:hidden" id="mobile-menu">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+} 
