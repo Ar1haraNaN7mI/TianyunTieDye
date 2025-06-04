@@ -23,10 +23,10 @@ export function Navigation({ isOpen, setIsOpen }: NavigationProps) {
   const navigation = [
     { name: '首页', href: '/' },
     { name: '产品', href: '/products' },
-    { name: '大师作品', href: '#' },
-    { name: '工作坊', href: '#' },
+    { name: '大师作品', href: '/masters' },
+    { name: '工作坊', href: '/workshops' },
     { name: 'VR体验', href: '/vr-canvas' },
-    { name: '关于我们', href: '#' },
+    { name: '关于我们', href: '/about' },
   ];
 
   return (
