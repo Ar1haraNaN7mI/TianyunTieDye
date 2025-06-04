@@ -1,8 +1,4 @@
 {
     "version": 2,
-    "framework": "nextjs",
-    "buildCommand": "cd tie-dye-shop && npm run build",
-    "outputDirectory": "tie-dye-shop/.next",
-    "installCommand": "cd tie-dye-shop && npm install",
-    "rootDirectory": "tie-dye-shop"
+    "framework": "nextjs"
 }

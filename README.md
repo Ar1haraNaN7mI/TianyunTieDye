@@ -19,7 +19,7 @@
 ## 项目结构
 
 ```
-tie-dye-shop/
+TianyunTieDye/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx          # 主布局
@@ -35,7 +35,8 @@ tie-dye-shop/
 │   └── image/                  # 静态图片资源
 ├── package.json
 ├── tailwind.config.js
-└── tsconfig.json
+├── tsconfig.json
+└── vercel.json
 ```
 
 ## 安装和运行
@@ -43,7 +44,7 @@ tie-dye-shop/
 1. 克隆仓库
 ```bash
 git clone https://github.com/Ar1haraNaN7mI/TianyunTieDye.git
-cd TianyunTieDye/tie-dye-shop
+cd TianyunTieDye
 ```
 
 2. 安装依赖
@@ -56,7 +57,7 @@ npm install
 npm run dev
 ```
 
-4. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
+4. 在浏览器中打开 [http://localhost:3001](http://localhost:3001)
 
 ## 部署
 
