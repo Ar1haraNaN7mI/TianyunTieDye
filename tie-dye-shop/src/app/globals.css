@@ -1,0 +1,443 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    .nav-link {
+        @apply relative overflow-hidden px-6 py-3 bg-white/90 backdrop-blur-sm text-gray-800 rounded-xl font-medium flex items-center h-12 text-base w-48 transition-all duration-300 border border-gray-200;
+    }
+    .nav-link::before {
+        @apply absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 transition-all duration-300 ease-out rounded-xl;
+        content: '';
+    }
+    .nav-link:hover {
+        @apply border-transparent shadow-lg transform translate-x-1;
+    }
+    .nav-link:hover::before {
+        @apply opacity-100;
+    }
+    .nav-link span {
+        @apply relative z-10 mx-auto font-medium;
+    }
+    .nav-link:hover span {
+        @apply text-white;
+    }
+    /* 导航容器样式 */
+    .nav-container {
+        @apply fixed left-0 top-40 flex flex-col items-start transition-all duration-300 ease-in-out z-50;
+    }
+    .nav-container.collapsed {
+        @apply translate-x-[-80%];
+    }
+    .nav-container.expanded {
+        @apply translate-x-0;
+    }
+    .nav-toggle {
+        @apply absolute right-0 top-1/2 -translate-y-1/2 translate-x-full bg-white/90 backdrop-blur-sm p-2 rounded-r-xl border border-l-0 border-gray-200 cursor-pointer transition-all duration-300;
+    }
+    .nav-toggle:hover {
+        @apply bg-white;
+    }
+    .nav-content {
+        @apply bg-white/60 backdrop-blur-md p-5 rounded-r-2xl border border-gray-100 shadow-lg flex flex-col gap-3;
+    }
+    .action-button {
+        @apply relative overflow-hidden px-6 py-1.5 bg-black text-white rounded-full font-medium flex items-center gap-2 h-8;
+    }
+    .action-button::before {
+        @apply absolute inset-[-1px] bg-gradient-to-r from-cyan-500 to-blue-500 -translate-x-full transition-transform duration-400 ease-out rounded-full opacity-0;
+        content: '';
+    }
+    .action-button:hover::before {
+        @apply translate-x-0 opacity-100;
+    }
+    .action-button:hover {
+        @apply border-transparent;
+    }
+    .action-button:not(:hover)::before {
+        @apply translate-x-full delay-0 opacity-0;
+    }
+    .action-button-white {
+        @apply relative overflow-hidden px-6 py-1.5 bg-white text-black rounded-full font-medium flex items-center gap-2 h-8 border border-black/10;
+    }
+    .action-button-white::before {
+        @apply absolute inset-[-1px] bg-gradient-to-r from-cyan-500 to-blue-500 -translate-x-full transition-transform duration-400 ease-out rounded-full opacity-0;
+        content: '';
+    }
+    .action-button-white:hover::before {
+        @apply translate-x-0 opacity-100;
+    }
+    .action-button-white:hover {
+        @apply text-white border-transparent;
+    }
+    .action-button-white:not(:hover)::before {
+        @apply translate-x-full delay-0 opacity-0;
+    }
+    .action-button span,
+    .action-button-white span {
+        @apply relative z-10;
+    }
+    .action-button svg,
+    .action-button-white svg {
+        @apply relative h-4 w-4 z-10;
+    }
+    .btn-primary {
+        @apply relative overflow-hidden px-8 py-3 bg-indigo-600 text-white rounded-full font-medium transition-all duration-300;
+    }
+    .btn-primary:hover {
+        @apply shadow-lg shadow-indigo-500/30;
+    }
+    .btn-primary:active {
+        @apply scale-95;
+    }
+    .btn-primary span {
+        @apply relative z-10;
+    }
+    .btn-secondary {
+        @apply relative overflow-hidden px-8 py-3 border-2 border-indigo-600 text-indigo-600 rounded-full font-medium transition-all duration-300;
+    }
+    .btn-secondary:hover {
+        @apply shadow-lg shadow-indigo-500/20 bg-indigo-50;
+    }
+    .btn-secondary:active {
+        @apply scale-95;
+    }
+    .btn-secondary span {
+        @apply relative z-10;
+    }
+    .btn-haute {
+        @apply relative overflow-hidden px-6 py-2 bg-white text-black rounded-full text-sm font-medium transition-all duration-300;
+    }
+    .btn-haute::after {
+        @apply absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-0 transition-opacity duration-300 ease-in-out;
+        content: '';
+    }
+    .btn-haute:hover {
+        @apply text-white;
+    }
+    .btn-haute:hover::after {
+        @apply opacity-100;
+    }
+    .btn-haute span {
+        @apply relative z-10 transition-colors duration-300;
+    }
+    .btn-nft {
+        @apply relative overflow-hidden px-4 py-2 bg-white text-black rounded-full text-sm font-medium transition-all duration-300;
+    }
+    .btn-nft:hover {
+        @apply text-white;
+    }
+    .btn-nft span {
+        @apply relative z-10;
+    }
+    .btn-artisan {
+        @apply relative overflow-hidden px-6 py-3 text-indigo-600 font-medium text-sm transition-all duration-300;
+    }
+    .btn-artisan::after {
+        @apply absolute right-0 opacity-0 transition-all duration-300 -translate-x-2.5;
+        content: '→';
+    }
+    .btn-artisan:hover::after {
+        @apply opacity-100 translate-x-0;
+    }
+    .btn-artisan span {
+        @apply relative transition-all duration-300;
+    }
+    .btn-artisan:hover span {
+        @apply -translate-x-2.5;
+    }
+    .btn-privilege {
+        @apply relative overflow-hidden px-8 py-4 bg-white text-indigo-900 rounded-full text-lg font-medium transition-all duration-500 ease-out;
+    }
+    .btn-privilege::before {
+        @apply absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 transition-all duration-500 ease-out;
+        content: '';
+    }
+    .btn-privilege:hover {
+        @apply text-white transform scale-[1.02] shadow-lg;
+    }
+    .btn-privilege:hover::before {
+        @apply opacity-100;
+    }
+    .btn-privilege:active {
+        @apply scale-100 shadow-md;
+    }
+    .btn-privilege span {
+        @apply relative z-10;
+    }
+    .btn-loading {
+        @apply relative pointer-events-none;
+    }
+    .btn-loading::after {
+        @apply absolute inset-0 bg-current opacity-20;
+        content: '';
+    }
+    .btn-loading::before {
+        @apply absolute w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin;
+        content: '';
+        left: 50%;
+        top: 50%;
+        margin: -0.5rem 0 0 -0.5rem;
+    }
+    .btn-ripple {
+        @apply relative overflow-hidden;
+    }
+    .btn-ripple::after {
+        @apply absolute rounded-full bg-white/30 scale-0 opacity-0 transition-all duration-500;
+        content: '';
+        width: 100px;
+        height: 100px;
+        margin: -50px 0 0 -50px;
+    }
+    .btn-ripple:active::after {
+        @apply scale-[4] opacity-0 duration-0;
+    }
+    .btn-3d {
+        @apply transition-transform duration-300;
+        transform: perspective(1px) translateZ(0);
+    }
+    .btn-3d:hover {
+        transform: perspective(1px) translateZ(20px);
+    }
+    .btn-group {
+        @apply flex gap-4;
+    }
+    .btn-group>* {
+        @apply animate-[slideIn_0.5s_backwards];
+    }
+    .btn-group>*:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .btn-group>*:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .btn-group>*:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .hero-btn-primary {
+        @apply relative overflow-hidden px-10 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium text-lg transition-all duration-300;
+    }
+    .hero-btn-primary:hover {
+        @apply shadow-xl shadow-indigo-500/30 scale-105;
+    }
+    .hero-btn-primary:active {
+        @apply scale-100;
+    }
+    .hero-btn-primary span {
+        @apply relative z-10;
+    }
+    .hero-btn-secondary {
+        @apply relative overflow-hidden px-10 py-4 bg-white border-2 border-indigo-600 text-indigo-600 rounded-full font-medium text-lg transition-all duration-300;
+    }
+    .hero-btn-secondary:hover {
+        @apply shadow-xl shadow-indigo-500/20 scale-105 bg-indigo-50;
+    }
+    .hero-btn-secondary:active {
+        @apply scale-100;
+    }
+    .hero-btn-secondary span {
+        @apply relative z-10;
+    }
+    /* 菜单触发按钮 */
+    .menu-trigger {
+        @apply fixed left-6 top-40 z-50 bg-white/90 backdrop-blur-sm p-3 rounded-xl border border-gray-200 shadow-md transition-all duration-300;
+    }
+    .menu-trigger:hover {
+        @apply bg-white transform scale-105 shadow-lg;
+    }
+    .menu-trigger:active {
+        @apply scale-95;
+    }
+    /* 菜单内容 */
+    .menu-content {
+        @apply fixed left-6 top-52 bg-white/90 backdrop-blur-md rounded-xl border border-gray-100 shadow-lg transition-all duration-300 w-48 overflow-hidden;
+        transform-origin: top left;
+        transform: scale(0.95);
+        opacity: 0;
+        visibility: hidden;
+    }
+    .menu-content.menu-open {
+        @apply opacity-100;
+        transform: scale(1);
+        visibility: visible;
+    }
+    /* 菜单链接容器 */
+    .menu-links {
+        @apply flex flex-col p-3 gap-2;
+    }
+    /* 菜单链接 */
+    .menu-link {
+        @apply relative overflow-hidden px-4 py-2.5 text-gray-800 rounded-lg font-medium flex items-center transition-all duration-300;
+    }
+    .menu-link:hover {
+        @apply bg-indigo-50 text-indigo-600;
+    }
+    .menu-link:before {
+        content: '';
+        @apply absolute left-0 top-0 h-full w-1 bg-indigo-500 transform -translate-x-full transition-transform duration-300;
+    }
+    .menu-link:hover:before {
+        @apply translate-x-0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        @apply opacity-0 translate-y-5;
+    }
+    to {
+        @apply opacity-100 translate-y-0;
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-skeleton {
+    @apply bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100;
+    background-size: 200% 100%;
+    @apply animate-[loading_1.5s_infinite];
+}
+
+.loading-placeholder {
+    @apply animate-[shimmer_2s_infinite_linear] bg-gradient-to-r from-[#f6f7f8] via-[#edeef1] to-[#f6f7f8];
+    background-size: 2000px 100%;
+}
+
+.animate-fade-in {
+    @apply animate-[fadeIn_0.6s_ease-out_forwards];
+}
+
+.animate-fade-in-delay {
+    @apply animate-[fadeIn_0.6s_ease-out_0.2s_forwards] opacity-0;
+}
+
+.animate-logo-appear {
+    @apply animate-[logoAppear_1s_ease-out_forwards];
+}
+
+@keyframes logoAppear {
+    0% {
+        @apply opacity-0 -translate-y-5 scale-90;
+    }
+    50% {
+        @apply translate-y-2.5 scale-110;
+    }
+    100% {
+        @apply opacity-100 translate-y-0 scale-100;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        @apply opacity-0 -translate-y-2.5;
+    }
+    to {
+        @apply opacity-100 translate-y-0;
+    }
+}
+
+@keyframes marquee {
+    0% {
+        @apply translate-x-full;
+    }
+    100% {
+        @apply -translate-x-full;
+    }
+}
+
+.animate-marquee {
+    @apply animate-[marquee_20s_linear_infinite];
+}
+
+:root {
+    --foreground: #000000;
+    --background: #ffffff;
+}
+
+body {
+    color: var(--foreground);
+    background-color: var(--background);
+    @apply font-sans;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulse-slow {
+    0% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@layer utilities {
+    .animate-gradient {
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+    }
+    .hover-scale {
+        @apply transition-transform duration-300;
+    }
+    .hover-scale:hover {
+        @apply scale-105;
+    }
+    .hover-rotate {
+        @apply transition-transform duration-300;
+    }
+    .hover-rotate:hover {
+        @apply rotate-3;
+    }
+    .hover-lift {
+        @apply transition-all duration-300;
+    }
+    .hover-lift:hover {
+        @apply -translate-y-2 shadow-lg;
+    }
+}
